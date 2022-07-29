@@ -6,6 +6,7 @@ const clearButtons = Array.from(document.getElementsByClassName('clear-buttons')
 let num1 = undefined;
 let num2 = undefined;
 let operator = false;
+let resultState = false;
 
 clearButtons.forEach((button) =>
   button.addEventListener('click', () => {
@@ -13,11 +14,21 @@ clearButtons.forEach((button) =>
       num1 = undefined;
       num2 = undefined;
       operator = false;
+      resultState = false;
       screen.innerText = '';
     } else {
-      if (operator == true) {
-        num2 = undefined;
-        screen.innerText = '';
+      if (num1 && num2) {
+        if (resultState = true) {
+          num1 = undefined;
+          num2 = undefined;
+          operator = false;
+          resultState = false;
+          screen.innerText = '';
+        } else {
+          num2 = undefined;
+          operator = false;
+          screen.innerText = num1;
+        }
       } else {
         num1 = undefined;
         num2 = undefined;
@@ -30,17 +41,22 @@ clearButtons.forEach((button) =>
 
 numButtons.forEach((button) =>
   button.addEventListener('click', () => {
-    if (operator == true) {
+    if (operator !== false) {
+      if (resultState == true) {
+        num2 = undefined;
+        resultState = false;
+        console.log('reset');
+      }
       if (num2 === undefined) {
         num2 = button.innerText;
-      } else if (num2 >= 0) {
+      } else {
         num2 += button.innerText;
       }
       screen.innerText = num2;
     } else if (operator == false) {
         if (num1 === undefined) {
           num1 = button.innerText;
-        } else if (num1 >= 0) {
+        } else {
           num1 += button.innerText;
         }
       screen.innerText = num1;
@@ -48,7 +64,27 @@ numButtons.forEach((button) =>
   })
 );
 
-
+calcButtons.forEach((button) =>
+  button.addEventListener('click', () => {
+    if (num1 === undefined) {
+      return;
+    } else if (num1 && !num2) {
+      if (button.innerText === '='){
+        return;
+      } else {
+        operator = button.innerText;
+      }
+    } else {
+      if (button.innerText === '='){
+        num1 = operate (num1, num2, operator);
+        resultState = true;
+        screen.innerText = num1;
+      } else {
+        operator = button.innerText;
+      }
+    }
+  })
+)
 
 function getSum (x, y) {
   return x + y;
@@ -70,9 +106,11 @@ function getRemainder (x, y) {
   return x % y;
 }
 
-function operate (x, y, operator) {
+function operate (num1, num2, operator) {
 
   let result = 0;
+  x = Number(num1);
+  y = Number(num2)
 
   if (operator == '+') {
     result = getSum(x, y)
@@ -86,5 +124,5 @@ function operate (x, y, operator) {
     result = getRemainder(x, y);
   }
 
-  return result;
+  return +result.toFixed(9);
 }

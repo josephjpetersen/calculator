@@ -18,6 +18,10 @@ button {
   font-size: 32px;
 }
 
+button:hover {
+  background-color: lightsteelblue;
+}
+
 a {
   color: whitesmoke;
 }
