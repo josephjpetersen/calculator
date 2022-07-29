@@ -13,6 +13,8 @@ button {
   background-color: lightslategray;
   color: whitesmoke;
   border-radius: 27px;
+  border: 1px solid black;
+  box-shadow: 0 0 7px black;
   font-size: 32px;
 }
 
