@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  font-family: 'Ubunto Mono', monospace, sans-serif;
+  background-color: darkolivegreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  font-family: 'Ubuntu Mono', monospace, sans-serif;
+  background-color: lightslategray;
+  color: whitesmoke;
+  border-radius: 27px;
+  font-size: 32px;
+}
+
+a {
+  color: whitesmoke;
+}
+
+.container {
+  background-color: darkred;
+  height: 600px;
+  width: 400px;
+  margin: 66px;
+  padding: 17px;
+  border-radius: 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  box-shadow: 0 0 23px black;
+}
+
+.screen {
+  background-color: lightskyblue;
+  width: auto;
+  height: 110px;
+  border: 3px solid black;
+  border-radius: 23px;
+}
+
+.buttons {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 9px;
+}
+
+#equals-button {
+  grid-column: 3 / span 2;
+}
+
+.footer {
+  display: flex;
+  gap: 23px;
+  color: whitesmoke;
+}
