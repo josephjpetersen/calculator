@@ -2,6 +2,7 @@ const screen = document.querySelector('.screen');
 const numButtons = Array.from(document.getElementsByClassName('num-buttons'));
 const calcButtons = Array.from(document.getElementsByClassName('calc-buttons'));
 const clearButtons = Array.from(document.getElementsByClassName('clear-buttons'));
+const decimalButton = document.querySelector('#decimal-button');
 
 let num1 = undefined;
 let num2 = undefined;
@@ -18,7 +19,7 @@ clearButtons.forEach((button) =>
       screen.innerText = '';
     } else {
       if (num1 && num2) {
-        if (resultState = true) {
+        if (resultState == true) {
           num1 = undefined;
           num2 = undefined;
           operator = false;
@@ -45,7 +46,6 @@ numButtons.forEach((button) =>
       if (resultState == true) {
         num2 = undefined;
         resultState = false;
-        console.log('reset');
       }
       if (num2 === undefined) {
         num2 = button.innerText;
@@ -60,6 +60,11 @@ numButtons.forEach((button) =>
           num1 += button.innerText;
         }
       screen.innerText = num1;
+    }
+    if (screen.innerText.includes('.')) {
+      decimalButton.disabled = true;
+    } else {
+      decimalButton.disabled = false;
     }
   })
 );
